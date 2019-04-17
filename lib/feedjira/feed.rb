@@ -310,6 +310,7 @@ module Feedjira
 
         curl.on_success do |c|
           xml = decode_content(c)
+          xml = xml.to_s.gsub(/[^[:print:]]/, '')
           klass = determine_feed_parser_for_xml(xml)
 
           if klass
